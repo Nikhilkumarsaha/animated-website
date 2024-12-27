@@ -2,7 +2,7 @@
 const Hero = () => {
   return (
     <div>
-      <h1>herohsdhdhdshfd</h1>
+      <h1>herohsdhdhdshfdwee</h1>
     </div>
   )
 }
