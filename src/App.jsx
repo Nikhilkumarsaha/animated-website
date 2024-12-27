@@ -1,9 +1,11 @@
+import Hero from "./components/Hero"
+import About from "./components/About"
 
 const App = () => {
   return (
     <main>
-      <h1 className="text-5xl text-violet-300 font-bold">Welcome to Tailwind</h1>
-      
+      <Hero/>
+      <About/>
     </main>
   )
 }
