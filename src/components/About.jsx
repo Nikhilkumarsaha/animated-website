@@ -37,8 +37,9 @@ const About = () => {
          
           <AnimatedTitle
           title="Disc<b>o</b>ver the world's <br /> largest shared <b>a</b>dventure"
-          containerClass="mt-5 !text-black text-center"
+          containerClass="mt-5 !text-black-center"
         />
+
 
         <div className='about-subtext'>
           <p>The Game of Games begains-your life, now an epic MMORPG</p>
