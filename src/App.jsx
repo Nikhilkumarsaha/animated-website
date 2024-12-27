@@ -1,11 +1,11 @@
 import Hero from "./components/Hero"
-// import About from "./components/About"
+import About from "./components/About"
 
 const App = () => {
   return (
     <main className="max-width">
       <Hero/>
-      {/* <About/> */}
+      <About/>
     </main>
   )
 }
