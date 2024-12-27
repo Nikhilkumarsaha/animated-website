@@ -3,7 +3,7 @@ import About from "./components/About"
 
 const App = () => {
   return (
-    <main>
+    <main className="max-width">
       <Hero/>
       <About/>
     </main>
