@@ -5,21 +5,18 @@ import { TiLocationArrow } from "react-icons/ti";
 import clsx from "clsx";
 import gsap from "gsap";
 
-
-
 const navItems = ["Nexus", "Vault", "Prologue", "About", "Contact"];
 
 const NavBar = () => {
   const [isAudioPlaying, setIsAudioPlaying] = useState(true);
   const [isIndicatorActive, setIsIndicatorActive] = useState(true);
-
   const audioElementRef = useRef(null);
+  const hoverAudioRef = useRef(new Audio("/public/audio/ui.mp3")); // Reference to hover sound
   const navContainerRef = useRef(null);
 
   const [isNavVisible, setIsNavVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const { y: currentScrollY } = useWindowScroll();
-  
 
   const toggleAudioIndicator = () => {
     setIsAudioPlaying((prev) => !prev);
@@ -34,7 +31,6 @@ const NavBar = () => {
     }
   }, [isAudioPlaying]);
 
-  // Automatically play/pause audio based on tab visibility
   useEffect(() => {
     const handleVisibilityChange = () => {
       if (document.visibilityState === "hidden") {
@@ -74,6 +70,18 @@ const NavBar = () => {
     });
   }, [isNavVisible]);
 
+  const handleHoverSound = () => {
+    hoverAudioRef.current.currentTime = 2; 
+    hoverAudioRef.current.play();
+    
+    
+    setTimeout(() => {
+      hoverAudioRef.current.pause();
+      hoverAudioRef.current.currentTime = 0; 
+    }, 2000); 
+  };
+  
+
   return (
     <div
       ref={navContainerRef}
@@ -83,7 +91,6 @@ const NavBar = () => {
         <nav className="flex size-full items-center justify-between p-4">
           <div className="flex items-center gap-7">
             <img src="/img/logo.png" alt="logo" className="w-10" />
-
             <Button
               id="product-button"
               title="Products"
@@ -99,6 +106,7 @@ const NavBar = () => {
                   key={item}
                   href={`#${item.toLowerCase()}`}
                   className="nav-hover-btn"
+                  onMouseOver={handleHoverSound} // Play sound on hover
                 >
                   {item}
                 </a>
@@ -111,8 +119,8 @@ const NavBar = () => {
             >
               <audio ref={audioElementRef} className="hidden" src="/audio/loop.mp3" loop />
               {[1, 2, 3, 4].map((bar) => (
-                
-                <div key={bar}
+                <div
+                  key={bar}
                   className={clsx("indicator-line", {
                     active: isIndicatorActive,
                   })}
